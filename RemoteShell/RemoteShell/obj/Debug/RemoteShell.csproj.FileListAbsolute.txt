@@ -1,0 +1,12 @@
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\bin\Debug\RemoteShell.exe.config
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\bin\Debug\RemoteShell.exe
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\bin\Debug\RemoteShell.pdb
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.csprojAssemblyReference.cache
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.Form1.resources
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.Properties.Resources.resources
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.csproj.GenerateResource.cache
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.csproj.CoreCompileInputs.cache
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.exe
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.pdb
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.clientForm.resources
+D:\Lập Trình Mạng Căn Bản\RemoteShell\RemoteShell\obj\Debug\RemoteShell.serverForm.resources
