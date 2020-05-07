@@ -1,0 +1,26 @@
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote-shell.csprojAssemblyReference.cache
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote_shell.mainForm.resources
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote_shell.Properties.Resources.resources
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote_shell.serverForm.resources
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote-shell.csproj.GenerateResource.cache
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote-shell.csproj.CoreCompileInputs.cache
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote_shell.clientForm.resources
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\bin\Debug\remote-shell.exe.config
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\bin\Debug\remote-shell.exe
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\bin\Debug\remote-shell.pdb
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote-shell.exe
+C:\Users\anvut\OneDrive\Desktop\NT106.K21.ANTT-remote-shell\remote-shell\remote-shell\obj\Debug\remote-shell.pdb
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\bin\Debug\remote-shell.exe.config
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\bin\Debug\remote-shell.exe
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\bin\Debug\remote-shell.pdb
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\bin\Debug\System.Management.Automation.dll
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.csprojAssemblyReference.cache
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote_shell.clientForm.resources
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote_shell.mainForm.resources
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote_shell.Properties.Resources.resources
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote_shell.serverForm.resources
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.csproj.GenerateResource.cache
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.csproj.CoreCompileInputs.cache
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.csproj.CopyComplete
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.exe
+H:\Lập trình mạng căn bản\Đồ án\Branch_RunCMD\remote-shell\obj\Debug\remote-shell.pdb
