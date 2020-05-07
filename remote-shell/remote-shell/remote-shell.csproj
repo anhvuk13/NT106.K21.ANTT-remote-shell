@@ -52,6 +52,9 @@
     <Compile Include="clientForm.Designer.cs">
       <DependentUpon>clientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="cmdProcess.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
