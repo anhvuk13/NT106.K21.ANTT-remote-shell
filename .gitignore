@@ -1,1 +1,3 @@
-remote-shell/.vs/
+source/.vs/
+source/remote-shell/bin/
+source/remote-shell/obj/
