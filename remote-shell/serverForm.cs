@@ -64,6 +64,8 @@ namespace remote_shell
 
         PowerShell powerShell;
 
+        public Runspace CreateRunspace { get; private set; }
+
         /// <summary>
         /// Khởi tạo các giá trị ban đầu cho powershell
         /// </summary>
@@ -81,6 +83,7 @@ namespace remote_shell
         /// <returns></returns>
         String executeCommand(String commnad)
         {
+            
             powerShell.AddScript(commnad);
             String result = " ";
 
@@ -90,9 +93,17 @@ namespace remote_shell
                 result += (item.ToString() + '\n');
 
             // Lấy lỗi trả về trong trường hợp lệnh sai
-            var errorList = powerShell.Streams.Error.ReadAll();
-            foreach(ErrorRecord item in errorList)
+            var error = powerShell.Streams.Error;
+            foreach(ErrorRecord item in error)
                 result += (item.ToString() + '\n');
+
+            // clear các thông tin vừa nhận được
+            // để tránh việc thông tin được lưu vào buffer
+            // được thêm vào lần chạy sau => lặp lại kết quả của lần trước
+            powerShell.Streams.Error.Clear();
+            powerShell.Streams.Warning.Clear();
+            powerShell.Commands.Clear();
+            
 
             return result;
         }
