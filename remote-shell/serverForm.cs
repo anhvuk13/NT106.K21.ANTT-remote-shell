@@ -14,6 +14,7 @@ using System.Windows.Forms;
 
 // Thư viện hỗ trợ tạo tiến trình Powershell
 using System.Management.Automation;
+using System.Management.Automation.Runspaces;
 
 namespace remote_shell
 {
