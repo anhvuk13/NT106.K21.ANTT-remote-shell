@@ -10,67 +10,55 @@ namespace remote_shell
     public partial class ClientForm : Form
     {
         private Dashboard parent;
+        private ServerForm server = null;
         private ClientShellWindow clientShellWindow = null;
         private ClientInboxWindow clientInboxWindow = null;
         private TcpClient clientSocket = null;
         private Thread listenThread = null;
-        private string room;
         public string clientShell = "";
         public string clientInbox = "";
 
-        public ClientForm(Dashboard parent, string room)
+        public ClientForm(Dashboard parent)
         {
             InitializeComponent();
             this.parent = parent;
-            this.room = room;
         }
 
-        private void ClientForm_Shown(object sender, EventArgs e)
+        private void ClientForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            __destructor();
+            if (server == null) parent.Show();
+        }
+
+        private void btnJoin_Click(object sender, EventArgs e)
         {
             clientSocket = new TcpClient();
             try
             {
-                clientSocket.Connect(Dns.Resolve("0.tcp.ngrok.io").AddressList, Int32.Parse(room));
+                clientSocket.Connect(Dns.Resolve("0.tcp.ngrok.io").AddressList, Int32.Parse(roomID.Text));
             }
             catch
             {
                 MessageBox.Show("Wrong Room ID or unavailable partner.", "Error");
-                this.Close();
+                clientSocket = null;
                 return;
             }
             clientShellWindow = new ClientShellWindow(this, clientSocket, btnShell);
             clientShellWindow.Show();
             clientInboxWindow = new ClientInboxWindow(this, clientSocket, btnInbox);
             clientInboxWindow.Show();
-            listenThread = new Thread(o => ListenThread(
-                this//clientSocket, clientShellWindow, clientInboxWindow, clientShell, clientInbox
-            ));
+            listenThread = new Thread(o => ListenThread(this));
             listenThread.Start();
+
+            roomID.Enabled = btnJoin.Enabled = false;
+            btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = true;
         }
 
-        private void ClientForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            if (clientSocket != null)
-                try
-                {
-                    NetworkStream stream = new NetworkStream(clientSocket.Client, false);
-                    byte[] buffer = Encoding.UTF8.GetBytes(@"!@#$%^&*()_+EXIT!@#$%^&*()_+");
-                    stream.Write(buffer, 0, buffer.Length);
-                    stream.Close();
-                } catch { }
-
-            if (listenThread != null) listenThread.Abort();
-            if (clientShellWindow != null) clientShellWindow.Close();
-            if (clientInboxWindow != null) clientInboxWindow.Close();
-            if (clientSocket != null)
-            {
-                try
-                {
-                    clientSocket.Client.Shutdown(SocketShutdown.Both);
-                } catch { }
-                clientSocket.Close();
-            }
-            parent.Show();
+            __destructor();
+            btnJoin.Enabled = roomID.Enabled = true;
+            btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = false;
         }
 
         private void btnShell_Click(object sender, EventArgs e)
@@ -85,12 +73,16 @@ namespace remote_shell
             clientInboxWindow.Show();
         }
 
-        private void ListenThread(
-            ClientForm main
-        //TcpClient clientSocket,
-        //ClientShellWindow clientShellWindow, ClientInboxWindow clientInboxWindow,
-        //string clientShell, string clientInbox
-        ) {
+        private void btnServer_Click(object sender, EventArgs e)
+        {
+            server = new ServerForm(parent);
+            server.Show();
+            this.Close();
+        }
+
+        // Thread
+        private void ListenThread(ClientForm main)
+        {
             NetworkStream stream = new NetworkStream(main.clientSocket.Client, false);
             byte[] buffer = new byte[1024];
             while (Thread.CurrentThread.IsAlive)
@@ -103,17 +95,23 @@ namespace remote_shell
                 if (bytesCount == 0) break;
                 string data = Encoding.UTF8.GetString(buffer, 0, bytesCount);
 
-                if (data == @"!@#$%^&*()_+EXIT!@#$%^&*()_+")
-                {
-                    (new Thread(PartnerLeft)).Start();
-                    break;
-                }
-
-                else if (data[0] == 'i')
+                if (data[0] == 'i')
                     (new Thread(o => InboxReceiveThread(main, data))).Start();//clientInboxWindow, clientInbox, data))).Start();
 
                 else if (data[0] == 's')
                     (new Thread(o => ShellReceiveThread(main, data))).Start();//clientShellWindow, clientShell, data))).Start();
+
+                else if (data == @"!@#$%^&*()_+EXIT!@#$%^&*()_+")
+                {
+                    (new Thread(o => PartnerLeft('e'))).Start();
+                    break;
+                }
+
+                else if (data == @"!@#$%^&*()_+DENY!@#$%^&*()_+")
+                {
+                    (new Thread(o => PartnerLeft('d'))).Start();
+                    break;
+                }
             }
             stream.Close();
         }
@@ -132,13 +130,56 @@ namespace remote_shell
             main.clientInboxWindow.UpdateInbox(data);
         }
 
-        public void PartnerLeft()
+        // Func
+        private void __destructor()
         {
-            MessageBox.Show("Your partner is away.", "Exit");
-            this.Invoke(new MethodInvoker(delegate ()
+            if (clientSocket != null)
+                try
+                {
+                    NetworkStream stream = new NetworkStream(clientSocket.Client, false);
+                    byte[] buffer = Encoding.UTF8.GetBytes(@"!@#$%^&*()_+EXIT!@#$%^&*()_+");
+                    stream.Write(buffer, 0, buffer.Length);
+                    stream.Close();
+                }
+                catch { }
+
+            if (listenThread != null)
             {
-                this.Close();
+                listenThread.Abort();
+                listenThread = null;
+            }
+            if (clientShellWindow != null)
+            {
+                clientShellWindow.Close();
+                clientShellWindow = null;
+            }
+            if (clientInboxWindow != null)
+            {
+                clientInboxWindow.Close();
+                clientInboxWindow = null;
+            }
+            if (clientSocket != null)
+            {
+                try
+                {
+                    clientSocket.Client.Shutdown(SocketShutdown.Both);
+                }
+                catch { }
+                clientSocket.Close();
+                clientSocket = null;
+            }
+        }
+
+        private void PartnerLeft(char c)
+        {
+            btnClose.Invoke(new MethodInvoker(delegate ()
+            {
+                btnClose.PerformClick();
             }));
+            string s = (c == 'e') ? "Your partner is away." : "Your IP is denied.";
+            MessageBox.Show(s, "Exit");
+            if (clientSocket != null) clientSocket.Close();
+            clientSocket = null;
         }
     }
 }
