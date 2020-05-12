@@ -29,56 +29,40 @@
         private void InitializeComponent()
         {
             this.rtxbShellOutput = new System.Windows.Forms.RichTextBox();
-            this.txbShellCommand = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // rtxbShellOutput
             // 
             this.rtxbShellOutput.BackColor = System.Drawing.SystemColors.ControlText;
-            this.rtxbShellOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxbShellOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtxbShellOutput.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.rtxbShellOutput.Location = new System.Drawing.Point(35, 94);
+            this.rtxbShellOutput.Location = new System.Drawing.Point(5, 6);
             this.rtxbShellOutput.Margin = new System.Windows.Forms.Padding(6);
             this.rtxbShellOutput.Name = "rtxbShellOutput";
-            this.rtxbShellOutput.Size = new System.Drawing.Size(545, 297);
+            this.rtxbShellOutput.Size = new System.Drawing.Size(988, 433);
             this.rtxbShellOutput.TabIndex = 3;
             this.rtxbShellOutput.Text = "";
             this.rtxbShellOutput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtxbShellOutput_KeyDown);
             this.rtxbShellOutput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxbShellOutput_KeyPress);
-            // 
-            // txbShellCommand
-            // 
-            this.txbShellCommand.BackColor = System.Drawing.SystemColors.ControlText;
-            this.txbShellCommand.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbShellCommand.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.txbShellCommand.Location = new System.Drawing.Point(35, 41);
-            this.txbShellCommand.Margin = new System.Windows.Forms.Padding(6);
-            this.txbShellCommand.Name = "txbShellCommand";
-            this.txbShellCommand.Size = new System.Drawing.Size(545, 29);
-            this.txbShellCommand.TabIndex = 2;
-            this.txbShellCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbShellCommand_KeyPress);
             // 
             // clientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(612, 429);
+            this.ClientSize = new System.Drawing.Size(998, 446);
             this.Controls.Add(this.rtxbShellOutput);
-            this.Controls.Add(this.txbShellCommand);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DeepSkyBlue;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "clientForm";
             this.Text = "Client";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.RichTextBox rtxbShellOutput;
-        private System.Windows.Forms.TextBox txbShellCommand;
     }
 }

@@ -15,6 +15,11 @@ using System.Windows.Forms;
 // Thư viện hỗ trợ tạo tiến trình Powershell
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using System.Collections;
+using System.Diagnostics;
+
+using CMDRemote;
+using System.Collections.ObjectModel;
 
 namespace remote_shell
 {
@@ -29,8 +34,6 @@ namespace remote_shell
             tcpServerThread = new Thread(serverThread);
             tcpServerThread.Start();
 
-            // khởi tạo powershell
-            setUpPowershell();
         }
 
         private void serverThread()
@@ -51,62 +54,118 @@ namespace remote_shell
                 string data = Encoding.UTF8.GetString(buffer, 0, byte_count);
 
                 // Thực thi lệnh từ client
-                String result = executeCommand(data);
-
                 // Trả về kết quả cho client
                 buffer = Encoding.UTF8.GetBytes(result);
                 stream.Write(buffer, 0, buffer.Length);
             }
             clientSocket.Close();
             serverSocket.Stop();
+
+        }
+
+        
+        void Recieved()
+        {
+            while (true)
+            {
+
+            }
         }
 
 
         PowerShell powerShell;
 
         public Runspace CreateRunspace { get; private set; }
+        public object ConsoleControl { get; private set; }
 
         /// <summary>
         /// Khởi tạo các giá trị ban đầu cho powershell
         /// </summary>
-        void setUpPowershell()
+
+
+        
+
+        ProcessStartInfo initializeProcess(string command)
         {
-            // Hiện tại chỉ có như vậy thôi
-            powerShell = PowerShell.Create();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "powershell.exe";
+            startInfo.Arguments = command;
+
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+
+            return startInfo;
         }
 
+        Process process;
+        Stack<ProcessStartInfo> processStack = new Stack<ProcessStartInfo>(); // dùng để lưu các chương trình được gọi
 
         /// <summary>
         /// Thực thi command và trả về kết quả
         /// </summary>
         /// <param name="commnad"></param>
         /// <returns></returns>
-        String executeCommand(String commnad)
+        void executeCommand(String command)
         {
-            
-            powerShell.AddScript(commnad);
-            String result = " ";
+            // Lấy info từ đỉnh của stack
+            ProcessStartInfo startInfo = processStack.Peek();
+            startInfo.Arguments = command;
 
-            // Lấy kết quả trả về
-            var resultList = powerShell.Invoke().ToArray();
-            foreach (PSObject item in resultList)
-                result += (item.ToString() + '\n');
+            // set up process
+            process = new Process();
+            process.StartInfo = initializeProcess(command);
 
-            // Lấy lỗi trả về trong trường hợp lệnh sai
-            var error = powerShell.Streams.Error;
-            foreach(ErrorRecord item in error)
-                result += (item.ToString() + '\n');
+            process.EnableRaisingEvents = true;
 
-            // clear các thông tin vừa nhận được
-            // để tránh việc thông tin được lưu vào buffer
-            // được thêm vào lần chạy sau => lặp lại kết quả của lần trước
-            powerShell.Streams.Error.Clear();
-            powerShell.Streams.Warning.Clear();
-            powerShell.Commands.Clear();
-            
+            process.ErrorDataReceived += new DataReceivedEventHandler(ErrorRecievedHandle);
+            process.OutputDataReceived += new DataReceivedEventHandler(OutputRecievedHandle);
+            process.Exited += new EventHandler(ExitedHandle);
 
-            return result;
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+        }       
+
+        void ErrorRecievedHandle(Object sender, DataReceivedEventArgs e)
+        {
+            AddMessage(e.Data);
         }
-        
+
+        void OutputRecievedHandle(Object sender, DataReceivedEventArgs e)
+        {
+            AddMessage(e.Data);
+        }
+
+        void ExitedHandle(Object sender, EventArgs e)
+        {
+            process.CancelErrorRead();
+            process.CancelOutputRead();
+        }
+
+        void myProgressEventHandler(object sender, DataAddedEventArgs e)
+        {
+            Object newRecord = sender as Object;
+
+            AddMessage(newRecord.ToString());
+        }
+
+        void AddMessage(String message)
+        {
+            if (richTextBox1.InvokeRequired)
+                richTextBox1.Invoke(new MethodInvoker(delegate ()
+                {
+                    /*richTextBox1.Text += (message + '\n');*/
+                    AddMessage(message);
+                }));
+            else
+            {
+                richTextBox1.Text += (message + '\n');
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+            }
+        }
     }
 }

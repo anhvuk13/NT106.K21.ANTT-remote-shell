@@ -43,31 +43,13 @@ namespace remote_shell
             int byteCount = stream.Read(buffer, 0, buffer.Length);
 
             string output = Encoding.UTF8.GetString(buffer, 0, byteCount);
-            if (byteCount > 0) rtxbShellOutput.Text += $"\n{output}\n";
+            output = output.Replace("\r", "");
+
+            if (byteCount > 0) rtxbShellOutput.Text += $"{output}";
 
             refeshPath();
         }
 
-
-        // Cái này hiện tại không cần nữa vì câu lệnh được nhập trực tiếp vào rtxbShellOutput
-        private void txbShellCommand_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (Char)Keys.Enter)
-            {
-                string command = txbShellCommand.Text;
-                switch (command)
-                {
-                    case "clear":
-                    case "cls":
-                        rtxbShellOutput.Clear();
-                        break;
-                    default:
-                        request(command);
-                        break;
-                }
-                txbShellCommand.Clear();
-            }
-        }
 
         // input start: vị trí mà người dùng nhập lệnh
         int inputStart = 0;
@@ -84,12 +66,15 @@ namespace remote_shell
             stream.Read(buffer, 0, buffer.Length);
 
             string path = Encoding.UTF8.GetString(buffer);
-            path = path.Replace("\n", "").Replace("\0", "");
+            path = path.Replace("\n", "").Replace("\0", "").Replace("Path", "");
+            path = path.Replace("-", "").Replace("\r", "").Trim();
+
             rtxbShellOutput.Text += (path + "> ");
 
             // Lấy vị trí cho phép người dùng nhập lệnh
             // Vị trí đó là ở cuối chuỗi cửa rtxbShellOutput
             inputStart = rtxbShellOutput.Text.Length;
+            rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length;
         }
 
         private void rtxbShellOutput_KeyPress(object sender, KeyPressEventArgs e)

@@ -1,0 +1,16 @@
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\bin\Debug\remote-shell.exe.config
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\bin\Debug\remote-shell.exe
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\bin\Debug\remote-shell.pdb
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote-shell.csprojAssemblyReference.cache
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ClientForm.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ClientInboxWindow.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ClientShellWindow.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.Dashboard.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.Properties.Resources.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ServerForm.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ServerInboxWindow.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote_shell.ServerShellWindow.resources
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote-shell.csproj.GenerateResource.cache
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote-shell.csproj.CoreCompileInputs.cache
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote-shell.exe
+H:\Lập trình mạng căn bản\Đồ án\NT106.K21.ANTT-remote-shell\source\remote-shell\obj\Debug\remote-shell.pdb
