@@ -54,7 +54,7 @@
             this.btnShell.Margin = new System.Windows.Forms.Padding(0);
             this.btnShell.Name = "btnShell";
             this.btnShell.Size = new System.Drawing.Size(227, 178);
-            this.btnShell.TabIndex = 0;
+            this.btnShell.TabIndex = 2;
             this.btnShell.Text = "Manipulate the\nRemote Shell";
             this.btnShell.UseVisualStyleBackColor = true;
             this.btnShell.Click += new System.EventHandler(this.btnShell_Click);
@@ -68,7 +68,7 @@
             this.btnInbox.Margin = new System.Windows.Forms.Padding(0);
             this.btnInbox.Name = "btnInbox";
             this.btnInbox.Size = new System.Drawing.Size(228, 178);
-            this.btnInbox.TabIndex = 1;
+            this.btnInbox.TabIndex = 3;
             this.btnInbox.Text = "Enter the conversation";
             this.btnInbox.UseVisualStyleBackColor = true;
             this.btnInbox.Click += new System.EventHandler(this.btnInbox_Click);
@@ -80,7 +80,7 @@
             this.btnServer.Margin = new System.Windows.Forms.Padding(0);
             this.btnServer.Name = "btnServer";
             this.btnServer.Size = new System.Drawing.Size(59, 28);
-            this.btnServer.TabIndex = 2;
+            this.btnServer.TabIndex = 0;
             this.btnServer.Text = "Server";
             this.btnServer.UseVisualStyleBackColor = true;
             this.btnServer.Click += new System.EventHandler(this.btnServer_Click);
@@ -95,6 +95,7 @@
             this.btnClient.Name = "btnClient";
             this.btnClient.Size = new System.Drawing.Size(75, 36);
             this.btnClient.TabIndex = 3;
+            this.btnClient.TabStop = false;
             this.btnClient.Text = "Client";
             this.btnClient.UseVisualStyleBackColor = false;
             // 
@@ -120,8 +121,9 @@
             this.roomID.Multiline = true;
             this.roomID.Name = "roomID";
             this.roomID.Size = new System.Drawing.Size(56, 35);
-            this.roomID.TabIndex = 6;
+            this.roomID.TabIndex = 1;
             this.roomID.Text = "12345";
+            this.roomID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.roomID_KeyDown);
             // 
             // btnJoin
             // 
@@ -197,6 +199,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(229, 178);
             this.btnClose.TabIndex = 13;
+            this.btnClose.TabStop = false;
             this.btnClose.Text = "Disconnect";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);

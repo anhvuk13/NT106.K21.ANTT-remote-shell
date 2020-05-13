@@ -181,5 +181,10 @@ namespace remote_shell
             if (clientSocket != null) clientSocket.Close();
             clientSocket = null;
         }
+
+        private void roomID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) btnJoin.PerformClick();
+        }
     }
 }

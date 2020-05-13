@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientShellWindow));
             this.remoteShell = new System.Windows.Forms.RichTextBox();
             this.remoteInput = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(90, 26);
             this.btnClear.TabIndex = 1;
+            this.btnClear.TabStop = false;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -73,6 +75,7 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.remoteInput);
             this.Controls.Add(this.remoteShell);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ClientShellWindow";
             this.Text = "ClientShellWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClientShellWindow_FormClosing);

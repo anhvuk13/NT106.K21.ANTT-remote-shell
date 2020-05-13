@@ -72,6 +72,7 @@ namespace remote_shell
         private void btnClose_Click(object sender, EventArgs e)
         {
             __destructor();
+            ConnectionChanged(false);
             HostPortChanged(true);
         }
 
@@ -242,7 +243,6 @@ namespace remote_shell
             {
                 btnClose.PerformClick();
             }));
-            ConnectionChanged(false);
             MessageBox.Show("Your partner is away.", "Exit");
         }
 
@@ -356,12 +356,12 @@ namespace remote_shell
                 this.Invoke(new MethodInvoker(delegate ()
                 {
                     hostPort.Enabled = btnHost.Enabled = flag;
-                    btnClose.Enabled = filter.Enabled = label1.Enabled = !flag;
+                    btnClose.Enabled = !flag;
                 }));
                 return;
             }
             hostPort.Enabled = btnHost.Enabled = flag;
-            btnClose.Enabled = filter.Enabled = label1.Enabled = !flag;
+            btnClose.Enabled = !flag;
         }
 
         private void ConnectionChanged(bool flag)
@@ -372,15 +372,23 @@ namespace remote_shell
                 {
                     btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = flag;
                     if (flag)
+                        label1.Enabled = label2.Enabled = filter.Enabled = iPList.Enabled = false;
+                    else
+                    {
+                        label1.Enabled = filter.Enabled = true;
                         FilterChanged();
-                    else label1.Enabled = label2.Enabled = filter.Enabled = iPList.Enabled = false;
+                    }
                 }));
                 return;
             }
             btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = flag;
-            if (!flag)
+            if (flag)
+                label1.Enabled = label2.Enabled = filter.Enabled = iPList.Enabled = false;
+            else
+            {
+                label1.Enabled = filter.Enabled = true;
                 FilterChanged();
-            else label1.Enabled = label2.Enabled = filter.Enabled = iPList.Enabled = false;
+            }
         }
 
         private void FilterChanged()
@@ -390,6 +398,11 @@ namespace remote_shell
                 case 0: iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = false; break;
                 case 1: case 2: iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = true; break;
             }
+        }
+
+        private void hostPort_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) btnHost.PerformClick();
         }
     }
 }

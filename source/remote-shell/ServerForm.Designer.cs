@@ -77,7 +77,7 @@
             this.btnInbox.Margin = new System.Windows.Forms.Padding(0);
             this.btnInbox.Name = "btnInbox";
             this.btnInbox.Size = new System.Drawing.Size(131, 150);
-            this.btnInbox.TabIndex = 1;
+            this.btnInbox.TabIndex = 3;
             this.btnInbox.Text = "Chat with your partner";
             this.btnInbox.UseVisualStyleBackColor = true;
             this.btnInbox.Click += new System.EventHandler(this.btnInbox_Click);
@@ -91,7 +91,7 @@
             this.btnShell.Margin = new System.Windows.Forms.Padding(0);
             this.btnShell.Name = "btnShell";
             this.btnShell.Size = new System.Drawing.Size(123, 150);
-            this.btnShell.TabIndex = 0;
+            this.btnShell.TabIndex = 2;
             this.btnShell.Text = "Supervise the shell";
             this.btnShell.UseVisualStyleBackColor = true;
             this.btnShell.Click += new System.EventHandler(this.btnShell_Click);
@@ -106,8 +106,9 @@
             this.hostPort.Multiline = true;
             this.hostPort.Name = "hostPort";
             this.hostPort.Size = new System.Drawing.Size(56, 35);
-            this.hostPort.TabIndex = 3;
+            this.hostPort.TabIndex = 1;
             this.hostPort.Text = "65535";
+            this.hostPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.hostPort_KeyDown);
             // 
             // btnHost
             // 
@@ -132,8 +133,7 @@
             this.btnClient.Margin = new System.Windows.Forms.Padding(0);
             this.btnClient.Name = "btnClient";
             this.btnClient.Size = new System.Drawing.Size(59, 28);
-            this.btnClient.TabIndex = 1;
-            this.btnClient.TabStop = false;
+            this.btnClient.TabIndex = 0;
             this.btnClient.Text = "Client";
             this.btnClient.UseVisualStyleBackColor = false;
             this.btnClient.Click += new System.EventHandler(this.btnClient_Click);
@@ -149,6 +149,7 @@
             this.btnServer.Name = "btnServer";
             this.btnServer.Size = new System.Drawing.Size(75, 36);
             this.btnServer.TabIndex = 0;
+            this.btnServer.TabStop = false;
             this.btnServer.Text = "Server";
             this.btnServer.UseVisualStyleBackColor = false;
             // 
@@ -196,6 +197,7 @@
             this.filter.Name = "filter";
             this.filter.Size = new System.Drawing.Size(119, 32);
             this.filter.TabIndex = 14;
+            this.filter.TabStop = false;
             this.filter.SelectedIndexChanged += new System.EventHandler(this.filter_SelectedIndexChanged);
             // 
             // label2
@@ -222,6 +224,7 @@
             this.iPList.Name = "iPList";
             this.iPList.Size = new System.Drawing.Size(164, 150);
             this.iPList.TabIndex = 11;
+            this.iPList.TabStop = false;
             this.iPList.Text = "327.723.923.329";
             // 
             // label1
@@ -246,6 +249,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(266, 59);
             this.btnClose.TabIndex = 16;
+            this.btnClose.TabStop = false;
             this.btnClose.Text = "Close the connection";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -273,6 +277,7 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(133, 59);
             this.btnUpdate.TabIndex = 17;
+            this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "Update the IPs list";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -286,6 +291,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(133, 59);
             this.btnRefresh.TabIndex = 18;
+            this.btnRefresh.TabStop = false;
             this.btnRefresh.Text = "Refresh the IPs list";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);

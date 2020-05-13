@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerInboxWindow));
             this.serverInbox = new System.Windows.Forms.RichTextBox();
             this.serverInboxInput = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.serverInboxInput);
             this.Controls.Add(this.serverInbox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerInboxWindow";
             this.Text = "ServerInboxWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerInboxWindow_FormClosing);
