@@ -118,14 +118,15 @@ namespace remote_shell
 
         private void ShellReceiveThread(ClientForm main, string data)//ClientShellWindow clientShellWindow, string clientShell, string data)
         {
-            data = $"{data.Substring(1)}\n";
+            if (data == "s/_") data = "\n";
+            else data = $"{data.Substring(3)}\n".Replace("s/_", "\n");
             main.clientShell += data;
             main.clientShellWindow.UpdateShell(data);
         }
 
         private void InboxReceiveThread(ClientForm main, string data)//ClientInboxWindow clientInboxWindow, string clientInbox, string data)
         {
-            data = $"Partner: {data.Substring(1)}\n";
+            data = $"Partner: {data.Substring(1)}";
             main.clientInbox += data;
             main.clientInboxWindow.UpdateInbox(data);
         }

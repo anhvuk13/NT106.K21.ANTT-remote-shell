@@ -41,21 +41,13 @@ namespace remote_shell
         public void UpdateShell(string clientShell)
         {
             Storage.RichTextBoxAppend(remoteShell, clientShell);
-            remoteInput.Invoke(new MethodInvoker(delegate ()
-            {
-                remoteInput.Enabled = true;
-                remoteInput.Focus();
-            }));
         }
 
         private void remoteInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                remoteInput.Enabled = false;
                 string data = remoteInput.Text;
-                Storage.RichTextBoxAppend(remoteShell, $"{data}\n");
-                parent.clientShell += $"{data}\n";
 
                 NetworkStream stream = new NetworkStream(clientSocket.Client, false);
                 byte[] buffer = Encoding.UTF8.GetBytes($"s{data}");

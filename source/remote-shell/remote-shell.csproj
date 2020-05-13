@@ -94,6 +94,7 @@
       <DependentUpon>ServerShellWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Storage.cs" />
+    <Compile Include="Terminal.cs" />
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>

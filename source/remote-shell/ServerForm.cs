@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
@@ -24,9 +22,9 @@ namespace remote_shell
         private TcpListener serverSocket = null;
         private TcpClient clientSocket = null;
         private Thread listenThread = null;
+        private Terminal terminal = null;
         public string serverShell = "";
         public string serverInbox = "";
-
         private string path;
         private List<IPAddress> ips;
 
@@ -155,6 +153,8 @@ namespace remote_shell
         // Func
         private void __destructor()
         {
+            if (terminal != null) terminal.Stop();
+
             if (clientSocket != null)
             {
                 try
@@ -276,6 +276,8 @@ namespace remote_shell
                 return;
             }
 
+            main.terminal = new Terminal(this);
+            main.terminal.Start();
             main.serverShellWindow = new ServerShellWindow(this, btnShell);
             main.Invoke(new MethodInvoker(delegate ()
             {
@@ -308,17 +310,17 @@ namespace remote_shell
                 if (bytesCount == 0) break;
                 string data = Encoding.UTF8.GetString(buffer, 0, bytesCount);
 
-                if (data == @"!@#$%^&*()_+EXIT!@#$%^&*()_+")
-                {
-                    (new Thread(PartnerLeft)).Start();
-                    break;
-                }
-
-                else if (data[0] == 'i')
+                if (data[0] == 'i')
                     (new Thread(o => InboxReceiveThread(main, data))).Start();//serverInboxWindow, ref serverInbox, data))).Start();
 
                 else if (data[0] == 's')
                     (new Thread(o => ShellReceiveThread(main, data))).Start();//clientSocket, serverShellWindow, ref serverShell, data))).Start();
+            
+                else if (data == @"!@#$%^&*()_+EXIT!@#$%^&*()_+")
+                {
+                    (new Thread(PartnerLeft)).Start();
+                    break;
+                }
             }
             stream.Close();
             Storage.BtnEnabledInvoke(main.btnShell, false);
@@ -328,22 +330,22 @@ namespace remote_shell
         private void ShellReceiveThread(ServerForm main, string data)
         {
             data = data.Substring(1);
-            main.serverShell += $"{data}\n";
-            main.serverShellWindow.UpdateShell($"{data}\n");
+            main.terminal.executeCommand(data);
+        }
 
-            data = "Hồi đáp shell";
-            main.serverShell += $"{data}\n";
-            main.serverShellWindow.UpdateShell($"{data}\n");
-
-            NetworkStream stream = new NetworkStream(main.clientSocket.Client, false);
-            byte[] buffer = Encoding.UTF8.GetBytes($"s{data}");
+        public void ShellOutputReturn(string data)
+        {
+            serverShell += $"{data}\n";
+            serverShellWindow.UpdateShell($"{data}\n");
+            NetworkStream stream = new NetworkStream(clientSocket.Client, false);
+            byte[] buffer = Encoding.UTF8.GetBytes($"s/_{data}");
             stream.Write(buffer, 0, buffer.Length);
             stream.Close();
         }
 
         private void InboxReceiveThread(ServerForm main, string data)//ServerInboxWindow serverInboxWindow, ref string serverInbox, string data)
         {
-            data = $"Partner: {data.Substring(1)}\n";
+            data = $"Partner: {data.Substring(1)}";
             main.serverInbox += data;
             main.serverInboxWindow.UpdateInbox(data);
         }        

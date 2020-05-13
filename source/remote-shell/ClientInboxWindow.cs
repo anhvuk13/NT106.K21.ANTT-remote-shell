@@ -52,8 +52,8 @@ namespace remote_shell
         private void SendInbox(ClientForm parent, ClientInboxWindow main, TcpClient clientSocket)
         {
             string data = main.clientInboxInput.Text;
-            Storage.RichTextBoxAppend(main.clientInbox, $"You: {data}\n");
-            parent.clientInbox += $"You: {data}\n";
+            Storage.RichTextBoxAppend(main.clientInbox, $"You: {data}");
+            parent.clientInbox += $"You: {data}";
 
             NetworkStream stream = new NetworkStream(clientSocket.Client, false);
             byte[] buffer = Encoding.UTF8.GetBytes($"i{data}");
