@@ -81,8 +81,8 @@ namespace remote_shell
             {
                 rtxbShellOutput.Text += (message + "\n");
 
-                rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length;
-                rtxbShellOutput.ScrollToCaret();
+                rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length; // đưa con trỏ xuống cuối richTextBox
+                rtxbShellOutput.ScrollToCaret(); // Tự động scroll khi có nhiều dòng
                 
             }
         }
@@ -115,7 +115,7 @@ namespace remote_shell
 
 
         /// <summary>
-        /// Xử Lý Ctrl+C
+        /// Xử lý việc người dùng nhấn Ctrl+C
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -32,8 +32,6 @@ namespace remote_shell
         public serverForm()
         {
             InitializeComponent();
-            /*tcpServerThread = new Thread(serverThread);
-            tcpServerThread.Start();*/
 
             serverSocket = new TcpListener(IPAddress.Any, 8080);
 
@@ -42,36 +40,11 @@ namespace remote_shell
             listen.Start();
         }
 
-        private void serverThread()
-        {
-            serverSocket = new TcpListener(IPAddress.Any, 8080);
-            serverSocket.Start();
-            TcpClient clientSocket = serverSocket.AcceptTcpClient();
+     //=============================================================================
+     /*
+      * Các hàm thực hiện chức năng cơ bản của Server
+      */
 
-            NetworkStream stream = clientSocket.GetStream();
-            while (Thread.CurrentThread.IsAlive && clientSocket.Connected)
-            {
-                //string text = "";
-                byte[] buffer = new byte[1024];
-                int byte_count = stream.Read(buffer, 0, buffer.Length);
-
-                if (byte_count == 0) break;
-
-                string data = Encoding.UTF8.GetString(buffer, 0, byte_count);
-
-                executeCommand(data);
-
-                // Thực thi lệnh từ client
-                // Trả về kết quả cho client
-                buffer = Encoding.UTF8.GetBytes(data);
-                stream.Write(buffer, 0, buffer.Length);
-            }
-            clientSocket.Close();
-            serverSocket.Stop();
-
-        }
-
-        
         /// <summary>
         /// Chờ nhận thông điệp được gửi từ client
         /// </summary>
@@ -82,11 +55,9 @@ namespace remote_shell
 
             // Khởi động process để chuẩn bị cho việc thực thi lệnh
             // khi nhận được thông điệp từ client
-           // (new Thread(startRunning)).Start();
             startRunning();
 
             NetworkStream stream = tcpClient.GetStream();
-
             while (true)
             {
                 byte[] dataByte = new byte[1024];
@@ -123,9 +94,9 @@ namespace remote_shell
         }
 
 
-
+    // ====================================================================================
         /*
-         * Các hàm cho Process
+         * Các hàm thực thi lệnh từ người dùng
          */
 
         Process process;
@@ -182,7 +153,6 @@ namespace remote_shell
             process.Start();
 
             streamWriter = process.StandardInput;
-            //streamReader = process.StandardOutput;
 
             //readResult();
             process.BeginOutputReadLine();
@@ -190,28 +160,6 @@ namespace remote_shell
 
         }
 
-        /*void readResult()
-        {
-            char[] buffer = new char[1];
-            String text = "";
-
-            while (streamReader.Read(buffer, 0, buffer.Length) != 0)
-            {
-                if (buffer[0] == '\n')
-                {
-                    Send(text);
-                    AddMessage(text);
-
-                    text = "";
-                    buffer = new char[1];
-                }
-                
-                text += new string(buffer);
-                buffer = new char[1];
-            }
-
-            Thread.CurrentThread.Abort();
-        }*/
 
         /// <summary>
         /// Thực thi command và trả về kết quả
@@ -287,7 +235,7 @@ namespace remote_shell
         }
 
 
-
+    //================================================================================
         /*
          * Các hàm bổ sung
          */
@@ -307,8 +255,8 @@ namespace remote_shell
             {
                 richTextBox1.Text += (message + "\n");
 
-                richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                richTextBox1.ScrollToCaret();
+                richTextBox1.SelectionStart = richTextBox1.Text.Length; // đưa con trỏ xuống cuối richTextBox
+                richTextBox1.ScrollToCaret(); // Tự động scroll khi có nhiều dòng
             }
         }
     }
