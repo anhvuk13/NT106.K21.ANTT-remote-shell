@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Remoting.Channels;
+using System.Diagnostics;
 
 namespace remote_shell
 {
@@ -26,6 +27,17 @@ namespace remote_shell
         private void btnClient_Click(object sender, EventArgs e)
         {
             (new clientForm()).Show();
+        }
+
+        private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Process[] processes = Process.GetProcessesByName("remote-shell");
+            foreach(Process item in processes)
+            {
+                item.Kill();
+                item.WaitForExit();
+                item.Dispose();
+            }
         }
     }
 }

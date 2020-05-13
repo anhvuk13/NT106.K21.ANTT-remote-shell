@@ -16,7 +16,7 @@ namespace remote_shell
     public partial class clientForm : Form
     {
         private TcpClient clientSocket = null;
-        NetworkStream stream = null;
+        //NetworkStream stream = null;
 
         public clientForm()
         {
@@ -24,99 +24,105 @@ namespace remote_shell
             clientSocket = new TcpClient();
             clientSocket.Connect(IPAddress.Parse("127.0.0.1"), 8080);
 
-            stream = clientSocket.GetStream();
+
+            Thread listen = new Thread(Recieved);
+            listen.IsBackground = true;
+            listen.Start();
 
 
-            refeshPath();
         }
 
-        
-        private void request(string command)
+    //===============================================================
+    /*
+     * Các hàm thực hiện chức năng của client
+     */
+        void Recieved()
         {
+            NetworkStream stream = clientSocket.GetStream();
 
-            //rtxbShellOutput.Text += $"❯ {command}\n";
+            while (true)
+            {
+                byte[] dataByte = new byte[1024];
+                int len = stream.Read(dataByte, 0, dataByte.Length);
 
-            byte[] buffer = Encoding.UTF8.GetBytes(command);
-            stream.Write(buffer, 0, buffer.Length);
+                if (len == 0) break; // => ngắt kết nối => không nhận được dữ liệu
 
-            buffer = new byte[1024];
-            int byteCount = stream.Read(buffer, 0, buffer.Length);
+                string dataString = Encoding.UTF8.GetString(dataByte);
+                AddMessage(dataString);
+            }
 
-            string output = Encoding.UTF8.GetString(buffer, 0, byteCount);
-            output = output.Replace("\r", "");
+            int l = 0;
+        }
 
-            if (byteCount > 0) rtxbShellOutput.Text += $"{output}";
+        void Send(string message)
+        {
+            NetworkStream stream = clientSocket.GetStream();
 
-            refeshPath();
+            byte[] dataByte = Encoding.UTF8.GetBytes(message);
+            stream.Write(dataByte, 0, dataByte.Length);
         }
 
 
-        // input start: vị trí mà người dùng nhập lệnh
-        int inputStart = 0;
+
+    //==================================================================
+    /*
+     * Các hàm bộ sung
+     */
+        void AddMessage(string message)
+        {
+            message = message.Replace("\0", "");
+            if (rtxbShellOutput.InvokeRequired)
+                rtxbShellOutput.Invoke(new MethodInvoker(delegate ()
+                {
+                    AddMessage(message);
+                }));
+
+            else
+            {
+                rtxbShellOutput.Text += (message + "\n");
+
+                rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length;
+                rtxbShellOutput.ScrollToCaret();
+                
+            }
+        }
 
         /// <summary>
-        /// Lấy path của thư hiện tại mà người dùng đang giao tiếp
+        /// Xử lý command trong textBox khi nhấn Enter
         /// </summary>
-        void refeshPath()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txbShellCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes("pwd");
-            stream.Write(buffer, 0, buffer.Length);
-
-            buffer = new byte[1024];
-            stream.Read(buffer, 0, buffer.Length);
-
-            string path = Encoding.UTF8.GetString(buffer);
-            path = path.Replace("\n", "").Replace("\0", "").Replace("Path", "");
-            path = path.Replace("-", "").Replace("\r", "").Trim();
-
-            rtxbShellOutput.Text += (path + "> ");
-
-            // Lấy vị trí cho phép người dùng nhập lệnh
-            // Vị trí đó là ở cuối chuỗi cửa rtxbShellOutput
-            inputStart = rtxbShellOutput.Text.Length;
-            rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length;
-        }
-
-        private void rtxbShellOutput_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            if(e.KeyChar == (Char)Keys.Enter)
+            if (e.KeyChar == (Char)Keys.Enter)
             {
-                // Lấy chuỗi vừa nhập
-                // việc trừ thêm 1 là để bỏ đi kí tự xuống dòng khi enter
-                // 'rtxbShellOutput.SelectionStart- inputStart-1' là độ dài của đoạn vừa nhập
-                string command = rtxbShellOutput.Text.Substring(inputStart, rtxbShellOutput.SelectionStart- inputStart-1);
+                string command = txbShellCommand.Text;
 
                 switch (command)
                 {
                     case "clear":
                     case "cls":
                         rtxbShellOutput.Clear();
-                        refeshPath();
                         break;
                     default:
-                        request(command);
+                        Send(command);
                         break;
                 }
 
-                // đưa con trỏ xuống cuối hàng
-                rtxbShellOutput.SelectionStart = rtxbShellOutput.Text.Length;
+                txbShellCommand.Clear();
             }
         }
 
+
         /// <summary>
-        /// Không cho người dùng chỉnh sửa các text
-        /// ở vị trí trước vị trí của inputStart
+        /// Xử Lý Ctrl+C
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rtxbShellOutput_KeyDown(object sender, KeyEventArgs e)
+        private void txbShellCommand_KeyDown(object sender, KeyEventArgs e)
         {
-            // kiểm tra xem con trỏ hiện tại có nằm trong cùng ko được phép ghi
-            // richTextBox xử lý các trường hợp nhấn key trong keyDown trước khi gọi keyPress
-            // do đó việc kiểm tra phải nằm trong KeyDown
-            if (rtxbShellOutput.SelectionStart <= inputStart)
-                e.Handled = true;
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+                Send("Ctrl+C");
         }
     }
 }

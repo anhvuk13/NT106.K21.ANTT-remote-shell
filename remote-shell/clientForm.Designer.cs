@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.rtxbShellOutput = new System.Windows.Forms.RichTextBox();
+            this.txbShellCommand = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // rtxbShellOutput
@@ -39,11 +40,21 @@
             this.rtxbShellOutput.Location = new System.Drawing.Point(5, 6);
             this.rtxbShellOutput.Margin = new System.Windows.Forms.Padding(6);
             this.rtxbShellOutput.Name = "rtxbShellOutput";
-            this.rtxbShellOutput.Size = new System.Drawing.Size(988, 433);
+            this.rtxbShellOutput.ReadOnly = true;
+            this.rtxbShellOutput.Size = new System.Drawing.Size(990, 400);
             this.rtxbShellOutput.TabIndex = 3;
             this.rtxbShellOutput.Text = "";
-            this.rtxbShellOutput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtxbShellOutput_KeyDown);
-            this.rtxbShellOutput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxbShellOutput_KeyPress);
+            // 
+            // txbShellCommand
+            // 
+            this.txbShellCommand.BackColor = System.Drawing.SystemColors.MenuText;
+            this.txbShellCommand.ForeColor = System.Drawing.SystemColors.Window;
+            this.txbShellCommand.Location = new System.Drawing.Point(5, 415);
+            this.txbShellCommand.Name = "txbShellCommand";
+            this.txbShellCommand.Size = new System.Drawing.Size(990, 29);
+            this.txbShellCommand.TabIndex = 4;
+            this.txbShellCommand.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbShellCommand_KeyDown);
+            this.txbShellCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbShellCommand_KeyPress);
             // 
             // clientForm
             // 
@@ -51,6 +62,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
             this.ClientSize = new System.Drawing.Size(998, 446);
+            this.Controls.Add(this.txbShellCommand);
             this.Controls.Add(this.rtxbShellOutput);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.DeepSkyBlue;
@@ -58,11 +70,13 @@
             this.Name = "clientForm";
             this.Text = "Client";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.RichTextBox rtxbShellOutput;
+        private System.Windows.Forms.TextBox txbShellCommand;
     }
 }

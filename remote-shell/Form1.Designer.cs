@@ -82,6 +82,7 @@
             this.Controls.Add(this.btnServer);
             this.Name = "mainForm";
             this.Text = "Remote Shell";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainForm_FormClosed);
             this.ResumeLayout(false);
 
         }
