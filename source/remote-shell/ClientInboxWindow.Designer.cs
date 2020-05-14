@@ -73,6 +73,7 @@
             this.clientInbox.TabIndex = 4;
             this.clientInbox.TabStop = false;
             this.clientInbox.Text = "";
+            this.clientInbox.TextChanged += new System.EventHandler(this.clientInbox_TextChanged);
             // 
             // tableLayoutPanel1
             // 

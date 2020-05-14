@@ -33,7 +33,7 @@ namespace remote_shell
             parent.clientInbox = "";
         }
 
-        private void serverInbox_TextChanged(object sender, EventArgs e)
+        private void clientInbox_TextChanged(object sender, EventArgs e)
         {
             clientInbox.SelectionStart = clientInbox.Text.Length;
             clientInbox.ScrollToCaret();
