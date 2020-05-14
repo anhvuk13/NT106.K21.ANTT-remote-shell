@@ -106,11 +106,16 @@ namespace remote_shell
                 (File.Create(path)).Close();
             try
             {
-                ips = Array.ConvertAll(iPList.Text.Split('\n'), IPAddress.Parse).ToList<IPAddress>();
+                ips = new List<IPAddress>();
+                foreach (var line in iPList.Lines)
+                {
+                    IPAddress temp;
+                    if (IPAddress.TryParse(line, out temp))
+                        ips.Add(temp);
+                }
             }
             catch
             {
-                ips = new List<IPAddress>();
                 MessageBox.Show("You haven't typed any IPs in the box or some of them are invalid.", "Error");
                 return;
             }
@@ -147,7 +152,7 @@ namespace remote_shell
             }
             fs.Close();
             iPList.Clear();
-            foreach (IPAddress ip in ips) iPList.AppendText(ip.ToString());
+            foreach (IPAddress ip in ips) iPList.AppendText($"{ip.ToString()}\n");
         }
 
         // Func
@@ -273,6 +278,7 @@ namespace remote_shell
             if (Passed(clientSocket) == false)
             {
                 (new Thread(o => ServerThread(main))).Start();
+                MessageBox.Show($"{((IPEndPoint)clientSocket.Client.RemoteEndPoint).Address} tried to connect.", "Deny");
                 return;
             }
 
@@ -397,8 +403,16 @@ namespace remote_shell
         {
             switch (filter.SelectedIndex)
             {
-                case 0: iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = false; break;
-                case 1: case 2: iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = true; break;
+                case 0:
+                    {
+                        iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = false;
+                        iPList.Clear(); break;
+                    }
+                case 1: case 2:
+                    {
+                        iPList.Enabled = label2.Enabled = btnUpdate.Enabled = btnRefresh.Enabled = true;
+                        btnRefresh.PerformClick();  break;
+                    }
             }
         }
 

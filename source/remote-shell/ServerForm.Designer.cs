@@ -225,7 +225,7 @@
             this.iPList.Size = new System.Drawing.Size(164, 150);
             this.iPList.TabIndex = 11;
             this.iPList.TabStop = false;
-            this.iPList.Text = "327.723.923.329";
+            this.iPList.Text = "";
             // 
             // label1
             // 
@@ -272,7 +272,7 @@
             // 
             this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(254, 243);
+            this.btnUpdate.Location = new System.Drawing.Point(387, 243);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(0);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(133, 59);
@@ -286,7 +286,7 @@
             // 
             this.btnRefresh.Enabled = false;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(387, 243);
+            this.btnRefresh.Location = new System.Drawing.Point(254, 243);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(133, 59);
