@@ -49,12 +49,26 @@ namespace remote_shell
             {
                 string data = remoteInput.Text;
 
+                if (data == "cls" || data == "clear")
+                {
+                    btnClear.PerformClick();
+                    return;
+                }
+
                 NetworkStream stream = new NetworkStream(clientSocket.Client, false);
                 byte[] buffer = Encoding.UTF8.GetBytes($"s{data}");
                 stream.Write(buffer, 0, buffer.Length);
                 stream.Close();
 
                 Storage.TextBoxClear(remoteInput);
+            }
+
+            if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)
+            {
+                NetworkStream stream = new NetworkStream(clientSocket.Client, false);
+                byte[] buffer = Encoding.UTF8.GetBytes($"sCTRL+C");
+                stream.Write(buffer, 0, buffer.Length);
+                stream.Close();
             }
         }
 

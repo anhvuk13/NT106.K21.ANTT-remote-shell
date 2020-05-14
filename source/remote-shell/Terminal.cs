@@ -17,7 +17,11 @@ namespace remote_shell
         public Terminal(ServerForm parent)
         {
             this.parent = parent;
+            __constructor();
+        }
 
+        private void __constructor()
+        {
             process = new Process();
             process.StartInfo = initializeProcess();
 
@@ -73,7 +77,8 @@ namespace remote_shell
 
         public void executeCommand(String command)
         {
-            if (command.Equals("Ctrl+C")) __destructor();
+            if (command.Equals("CTRL+C"))
+                writer.WriteLine("\x3");
             else writer.WriteLine(command);
         }
 

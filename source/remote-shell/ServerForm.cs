@@ -265,13 +265,19 @@ namespace remote_shell
 
         // Thread
         private void ServerThread(ServerForm main)
-        {
-            main.serverSocket.Start();
+        { 
             try
             {
+                main.serverSocket.Start();
                 main.clientSocket = serverSocket.AcceptTcpClient();
             } catch(SocketException e)
             {
+                MessageBox.Show("The port is invalid or already in use.", "Error");
+                serverSocket = null;
+                main.Invoke(new MethodInvoker(delegate ()
+                {
+                    main.btnClose.PerformClick();
+                }));
                 return;
             }
 
@@ -342,6 +348,14 @@ namespace remote_shell
         private void ShellReceiveThread(ServerForm main, string data)
         {
             data = data.Substring(1);
+            if (data == "CTRL+C")
+            {
+                main.Invoke(new MethodInvoker(delegate ()
+                {
+                    main.btnClose.PerformClick();
+                }));
+                return;
+            }
             main.terminal.executeCommand(data);
         }
 
