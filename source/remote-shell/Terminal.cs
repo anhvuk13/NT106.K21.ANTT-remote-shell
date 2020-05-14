@@ -34,12 +34,12 @@ namespace remote_shell
             {
                 process.CancelErrorRead();
                 process.CancelOutputRead();
-            } catch { }
+                process.Kill();
+                process.Dispose();
+            }
+            catch { }
             if (writer != null) writer.Close();
             writer = null;
-
-            process.Kill();
-            process.Dispose();
         }
 
         private ProcessStartInfo initializeProcess()

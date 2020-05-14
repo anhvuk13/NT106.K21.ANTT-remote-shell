@@ -15,6 +15,7 @@ namespace remote_shell
         private ClientInboxWindow clientInboxWindow = null;
         private TcpClient clientSocket = null;
         private Thread listenThread = null;
+        private string publicIP;
         public string clientShell = "";
         public string clientInbox = "";
 
@@ -22,6 +23,7 @@ namespace remote_shell
         {
             InitializeComponent();
             this.parent = parent;
+            this.publicIP = Storage.GetIPAddress();
         }
 
         private void ClientForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -43,12 +45,18 @@ namespace remote_shell
                 clientSocket = null;
                 return;
             }
+
             clientShellWindow = new ClientShellWindow(this, clientSocket, btnShell);
             clientShellWindow.Show();
             clientInboxWindow = new ClientInboxWindow(this, clientSocket, btnInbox);
             clientInboxWindow.Show();
             listenThread = new Thread(o => ListenThread(this));
             listenThread.Start();
+
+            NetworkStream stream = new NetworkStream(clientSocket.Client, false);
+            byte[] buffer = Encoding.UTF8.GetBytes(publicIP);
+            stream.Write(buffer, 0, buffer.Length);
+            stream.Close();
 
             roomID.Enabled = btnJoin.Enabled = false;
             btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = true;

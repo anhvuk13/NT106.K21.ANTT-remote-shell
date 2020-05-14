@@ -205,7 +205,7 @@ namespace remote_shell
             stream.Close();
         }
 
-        private bool Passed(TcpClient clientSocket)
+        private bool Passed(TcpClient clientSocket, string ip)
         {
             int mode = 0;
             filter.Invoke(new MethodInvoker(delegate ()
@@ -218,7 +218,7 @@ namespace remote_shell
 
             try
             {
-                inList = ips.Contains(((IPEndPoint)clientSocket.Client.RemoteEndPoint).Address);
+                inList = ips.Contains(IPAddress.Parse(ip));
             }
             catch
             {
@@ -275,13 +275,19 @@ namespace remote_shell
                 return;
             }
 
-            if (Passed(clientSocket) == false)
+            NetworkStream stream = new NetworkStream(clientSocket.Client, false);
+            byte[] buffer = new byte[1024];
+            int bytesCount = stream.Read(buffer, 0, buffer.Length);
+            stream.Close();
+            string ip = Encoding.UTF8.GetString(buffer, 0, bytesCount);
+
+            if (Passed(clientSocket, ip) == false)
             {
                 (new Thread(o => ServerThread(main))).Start();
-                MessageBox.Show($"{((IPEndPoint)clientSocket.Client.RemoteEndPoint).Address} tried to connect.", "Deny");
+                MessageBox.Show($"{ip} tried to connect.", "Deny");
                 return;
             }
-
+           
             main.terminal = new Terminal(this);
             main.terminal.Start();
             main.serverShellWindow = new ServerShellWindow(this, btnShell);
