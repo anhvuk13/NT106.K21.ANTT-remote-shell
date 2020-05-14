@@ -47,7 +47,10 @@ namespace remote_shell
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string data = remoteInput.Text;
+                e.Handled = true;
+
+                string data = remoteInput.Text.TrimStart(new char[] { '\r', '\n' });
+                Storage.TextBoxClear(remoteInput);
 
                 if (data == "cls" || data == "clear")
                 {
@@ -55,12 +58,12 @@ namespace remote_shell
                     return;
                 }
 
+                if (data == "") return;
+
                 NetworkStream stream = new NetworkStream(clientSocket.Client, false);
                 byte[] buffer = Encoding.UTF8.GetBytes($"s{data}");
                 stream.Write(buffer, 0, buffer.Length);
                 stream.Close();
-
-                Storage.TextBoxClear(remoteInput);
             }
 
             if (e.KeyCode == Keys.C && e.Modifiers == Keys.Control)

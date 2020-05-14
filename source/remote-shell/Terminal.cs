@@ -84,7 +84,7 @@ namespace remote_shell
 
         private void OutputReceivedHandle(Object sender, DataReceivedEventArgs e)
         {
-            parent.ShellOutputReturn(e.Data); 
+            parent.ShellOutputReturn($"{e.Data}\n"); 
         }
 
         private void ExitedHandle(Object sender, EventArgs e)

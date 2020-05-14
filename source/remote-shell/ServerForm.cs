@@ -265,12 +265,11 @@ namespace remote_shell
 
         // Thread
         private void ServerThread(ServerForm main)
-        { 
+        {
             try
             {
                 main.serverSocket.Start();
-                main.clientSocket = serverSocket.AcceptTcpClient();
-            } catch(SocketException e)
+            } catch
             {
                 MessageBox.Show("The port is invalid or already in use.", "Error");
                 serverSocket = null;
@@ -278,6 +277,13 @@ namespace remote_shell
                 {
                     main.btnClose.PerformClick();
                 }));
+                return;
+            }
+            try
+            {
+                main.clientSocket = serverSocket.AcceptTcpClient();
+            } catch(SocketException e)
+            {
                 return;
             }
 
@@ -361,8 +367,14 @@ namespace remote_shell
 
         public void ShellOutputReturn(string data)
         {
-            serverShell += $"{data}\n";
-            serverShellWindow.UpdateShell($"{data}\n");
+            if (
+                serverShell.Length > 1 && 
+                serverShell[serverShell.Length - 1] == '\n' && 
+                serverShell[serverShell.Length - 2] == '\n' &&
+                data == "\n"
+            ) return;
+            serverShell += data;
+            serverShellWindow.UpdateShell(data);
             NetworkStream stream = new NetworkStream(clientSocket.Client, false);
             byte[] buffer = Encoding.UTF8.GetBytes($"s/_{data}");
             stream.Write(buffer, 0, buffer.Length);

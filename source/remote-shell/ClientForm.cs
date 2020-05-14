@@ -126,8 +126,7 @@ namespace remote_shell
 
         private void ShellReceiveThread(ClientForm main, string data)//ClientShellWindow clientShellWindow, string clientShell, string data)
         {
-            if (data == "s/_") data = "\n";
-            else data = $"{data.Substring(3)}\n".Replace("s/_", "\n");
+            data = data.Substring(3).Replace("\ns/_", "\n");
             main.clientShell += data;
             main.clientShellWindow.UpdateShell(data);
         }
