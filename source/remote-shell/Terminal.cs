@@ -32,7 +32,7 @@ namespace remote_shell
             process.EnableRaisingEvents = true;
         }
 
-        private void __destructor()
+        public void __destructor()
         {
             try
             {

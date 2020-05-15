@@ -51,6 +51,7 @@
             this.remoteShell.TabIndex = 0;
             this.remoteShell.TabStop = false;
             this.remoteShell.Text = "";
+            this.remoteShell.Click += new System.EventHandler(this.remoteShell_Click);
             this.remoteShell.TextChanged += new System.EventHandler(this.remoteShell_TextChanged);
             // 
             // remoteInput

@@ -43,5 +43,13 @@ namespace remote_shell
         {
             this.Hide();
         }
+
+        public void ClearShell()
+        {
+            btnClear.Invoke(new MethodInvoker(delegate ()
+            {
+                btnClear.PerformClick();
+            }));
+        }
     }
 }

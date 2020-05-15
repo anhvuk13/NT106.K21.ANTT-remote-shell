@@ -356,10 +356,14 @@ namespace remote_shell
             data = data.Substring(1);
             if (data == "CTRL+C")
             {
-                main.Invoke(new MethodInvoker(delegate ()
-                {
-                    main.btnClose.PerformClick();
-                }));
+                main.terminal.__destructor();
+                main.terminal = new Terminal(main);
+                main.terminal.Start();
+                return;
+            }
+            if (data == "cls" || data == "clear")
+            {
+                main.serverShellWindow.ClearShell();
                 return;
             }
             main.terminal.executeCommand(data);
