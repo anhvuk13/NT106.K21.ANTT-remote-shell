@@ -51,5 +51,10 @@ namespace remote_shell
                 btnClear.PerformClick();
             }));
         }
+
+        private void btnBreak_Click(object sender, EventArgs e)
+        {
+            parent.TerminalBreak(parent);
+        }
     }
 }

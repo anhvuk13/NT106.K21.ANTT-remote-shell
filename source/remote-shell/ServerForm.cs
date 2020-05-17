@@ -263,6 +263,13 @@ namespace remote_shell
             return path;
         }
 
+        public void TerminalBreak(ServerForm main)
+        {
+            main.terminal.__destructor();
+            main.terminal = new Terminal(main);
+            main.terminal.Start();
+        }
+
         // Thread
         private void ServerThread(ServerForm main)
         {
@@ -356,9 +363,7 @@ namespace remote_shell
             data = data.Substring(1);
             if (data == "CTRL+C")
             {
-                main.terminal.__destructor();
-                main.terminal = new Terminal(main);
-                main.terminal.Start();
+                main.TerminalBreak(main);
                 return;
             }
             if (data == "cls" || data == "clear")

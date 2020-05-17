@@ -77,9 +77,7 @@ namespace remote_shell
 
         public void executeCommand(String command)
         {
-            if (command.Equals("CTRL+C"))
-                writer.WriteLine("\x3");
-            else writer.WriteLine(command);
+            writer.WriteLine(command);
         }
 
         private void OutputReceivedHandle(Object sender, DataReceivedEventArgs e)

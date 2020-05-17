@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerShellWindow));
             this.localShell = new System.Windows.Forms.RichTextBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBreak = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // localShell
@@ -52,19 +55,51 @@
             // 
             // btnClear
             // 
-            this.btnClear.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnClear.FlatAppearance.BorderSize = 0;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(5, 330);
+            this.btnClear.Location = new System.Drawing.Point(287, 0);
             this.btnClear.Margin = new System.Windows.Forms.Padding(0);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(574, 26);
-            this.btnClear.TabIndex = 0;
+            this.btnClear.Size = new System.Drawing.Size(287, 26);
+            this.btnClear.TabIndex = 1;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.btnBreak, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnClear, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 330);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(574, 26);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnBreak
+            // 
+            this.btnBreak.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnBreak.FlatAppearance.BorderSize = 0;
+            this.btnBreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBreak.ForeColor = System.Drawing.Color.White;
+            this.btnBreak.Location = new System.Drawing.Point(0, 0);
+            this.btnBreak.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBreak.Name = "btnBreak";
+            this.btnBreak.Size = new System.Drawing.Size(287, 26);
+            this.btnBreak.TabIndex = 0;
+            this.btnBreak.Text = "Break";
+            this.btnBreak.UseVisualStyleBackColor = true;
+            this.btnBreak.Click += new System.EventHandler(this.btnBreak_Click);
             // 
             // ServerShellWindow
             // 
@@ -72,7 +107,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.localShell);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerShellWindow";
@@ -80,6 +115,7 @@
             this.Text = "ServerShellWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerShellWindow_FormClosing);
             this.Shown += new System.EventHandler(this.ServerShellWindow_Shown);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -88,5 +124,7 @@
 
         private System.Windows.Forms.RichTextBox localShell;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnBreak;
     }
 }
