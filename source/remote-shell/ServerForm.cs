@@ -69,6 +69,12 @@ namespace remote_shell
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(delegate ()
+                {
+                    this.Text = "ServerForm";
+                }));
+            else this.Text = "ServerForm";
             __destructor();
             ConnectionChanged(false);
             HostPortChanged(true);
@@ -205,7 +211,7 @@ namespace remote_shell
             stream.Close();
         }
 
-        private bool Passed(TcpClient clientSocket, string ip)
+        private bool Passed(ServerForm main, TcpClient clientSocket, string ip)
         {
             int mode = 0;
             filter.Invoke(new MethodInvoker(delegate ()
@@ -222,23 +228,25 @@ namespace remote_shell
             }
             catch
             {
-                if (mode == 1)
-                {
-                    DenyConnection(clientSocket);
-                    return false;
-                }
-                return true;
+                DenyConnection(clientSocket);
+                (new Thread(o => ServerThread(main))).Start();
+                MessageBox.Show("Unknown IP tried to connect.", "Deny");
+                return false;
             }
 
             if (mode == 1)
             {
                 if (inList) return true;
                 DenyConnection(clientSocket);
+                (new Thread(o => ServerThread(main))).Start();
+                MessageBox.Show($"{ip} tried to connect.", "Deny");
                 return false;
             }
 
             if (!inList) return true;
             DenyConnection(clientSocket);
+            (new Thread(o => ServerThread(main))).Start();
+            MessageBox.Show($"{ip} tried to connect.", "Deny");
             return false;
         }
 
@@ -300,25 +308,18 @@ namespace remote_shell
             stream.Close();
             string ip = Encoding.UTF8.GetString(buffer, 0, bytesCount);
 
-            if (Passed(clientSocket, ip) == false)
-            {
-                (new Thread(o => ServerThread(main))).Start();
-                MessageBox.Show($"{ip} tried to connect.", "Deny");
-                return;
-            }
-           
-            main.terminal = new Terminal(this);
-            main.terminal.Start();
-            main.serverShellWindow = new ServerShellWindow(this, btnShell);
+            if (Passed(main, clientSocket, ip) == false) return;
+
+            main.serverShellWindow = new ServerShellWindow(main, btnShell);
+            main.serverInboxWindow = new ServerInboxWindow(main, clientSocket, btnInbox);
             main.Invoke(new MethodInvoker(delegate ()
             {
+                main.Text = $"{ip} connected.";
                 main.serverShellWindow.Show();
-            }));
-            main.serverInboxWindow = new ServerInboxWindow(this, clientSocket, btnInbox);
-            main.Invoke(new MethodInvoker(delegate ()
-            {
                 main.serverInboxWindow.Show();
             }));
+            main.terminal = new Terminal(this);
+            main.terminal.Start();
             main.listenThread = new Thread(o => ListenThread(main));
             listenThread.Start();
 
