@@ -34,12 +34,13 @@
             this.btnServer = new System.Windows.Forms.Button();
             this.btnClient = new System.Windows.Forms.Button();
             this.header = new System.Windows.Forms.Panel();
-            this.roomID = new System.Windows.Forms.TextBox();
+            this.serverPort = new System.Windows.Forms.TextBox();
             this.btnJoin = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tutorialText = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnClose = new System.Windows.Forms.Button();
+            this.serverHost = new System.Windows.Forms.TextBox();
             this.header.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -111,28 +112,29 @@
             this.header.Size = new System.Drawing.Size(684, 70);
             this.header.TabIndex = 5;
             // 
-            // roomID
+            // serverPort
             // 
-            this.roomID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roomID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roomID.Location = new System.Drawing.Point(0, 0);
-            this.roomID.Margin = new System.Windows.Forms.Padding(0);
-            this.roomID.MaxLength = 5;
-            this.roomID.Multiline = true;
-            this.roomID.Name = "roomID";
-            this.roomID.Size = new System.Drawing.Size(56, 35);
-            this.roomID.TabIndex = 1;
-            this.roomID.Text = "12345";
-            this.roomID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.roomID_KeyDown);
+            this.serverPort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.serverPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serverPort.Location = new System.Drawing.Point(200, 0);
+            this.serverPort.Margin = new System.Windows.Forms.Padding(0);
+            this.serverPort.MaxLength = 5;
+            this.serverPort.Multiline = true;
+            this.serverPort.Name = "serverPort";
+            this.serverPort.Size = new System.Drawing.Size(56, 35);
+            this.serverPort.TabIndex = 1;
+            this.serverPort.Text = "12345";
+            this.serverPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.serverPort.KeyDown += new System.Windows.Forms.KeyEventHandler(this.roomID_KeyDown);
             // 
             // btnJoin
             // 
             this.btnJoin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnJoin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJoin.Location = new System.Drawing.Point(56, 0);
+            this.btnJoin.Location = new System.Drawing.Point(256, 0);
             this.btnJoin.Margin = new System.Windows.Forms.Padding(0);
             this.btnJoin.Name = "btnJoin";
-            this.btnJoin.Size = new System.Drawing.Size(628, 35);
+            this.btnJoin.Size = new System.Drawing.Size(440, 35);
             this.btnJoin.TabIndex = 7;
             this.btnJoin.TabStop = false;
             this.btnJoin.Text = "Connect to your partner";
@@ -141,11 +143,13 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.btnJoin, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.roomID, 0, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 440F));
+            this.tableLayoutPanel1.Controls.Add(this.serverHost, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnJoin, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.serverPort, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 148);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -204,6 +208,19 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // serverHost
+            // 
+            this.serverHost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.serverHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serverHost.Location = new System.Drawing.Point(0, 0);
+            this.serverHost.Margin = new System.Windows.Forms.Padding(0);
+            this.serverHost.Multiline = true;
+            this.serverHost.Name = "serverHost";
+            this.serverHost.Size = new System.Drawing.Size(200, 35);
+            this.serverHost.TabIndex = 8;
+            this.serverHost.Text = "0.tcp.ngrok.io";
+            this.serverHost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,11 +250,12 @@
         private System.Windows.Forms.Button btnServer;
         private System.Windows.Forms.Button btnClient;
         private System.Windows.Forms.Panel header;
-        private System.Windows.Forms.TextBox roomID;
+        private System.Windows.Forms.TextBox serverPort;
         private System.Windows.Forms.Button btnJoin;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.RichTextBox tutorialText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.TextBox serverHost;
     }
 }

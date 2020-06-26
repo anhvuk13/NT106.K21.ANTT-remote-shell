@@ -37,7 +37,7 @@ namespace remote_shell
             clientSocket = new TcpClient();
             try
             {
-                clientSocket.Connect(Dns.Resolve("0.tcp.ngrok.io").AddressList, Int32.Parse(roomID.Text));
+                clientSocket.Connect(Dns.Resolve(serverHost.Text).AddressList, Int32.Parse(serverPort.Text));
             }
             catch
             {
@@ -58,14 +58,14 @@ namespace remote_shell
             stream.Write(buffer, 0, buffer.Length);
             stream.Close();
 
-            roomID.Enabled = btnJoin.Enabled = false;
+            serverPort.Enabled = btnJoin.Enabled = false;
             btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = true;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             __destructor();
-            btnJoin.Enabled = roomID.Enabled = true;
+            btnJoin.Enabled = serverPort.Enabled = true;
             btnShell.Enabled = btnInbox.Enabled = btnClose.Enabled = false;
         }
 
