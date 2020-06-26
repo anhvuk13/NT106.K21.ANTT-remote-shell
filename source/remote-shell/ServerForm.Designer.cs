@@ -65,8 +65,8 @@
             this.tutorialText.TabIndex = 2;
             this.tutorialText.TabStop = false;
             this.tutorialText.Text = "Pick a port and click \"Host a connection\".\nAfterward, look for the above line in " +
-    "your Command Prompt and you will find the Room ID there, forward it to your part" +
-    "ner.";
+    "your Command Prompt and you will find the Forwarding Remote Endpoint there, forw" +
+    "ard it to your partner.";
             // 
             // btnInbox
             // 

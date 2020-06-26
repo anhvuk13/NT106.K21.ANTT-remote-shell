@@ -41,7 +41,7 @@ namespace remote_shell
             }
             catch
             {
-                MessageBox.Show("Wrong Room ID or unavailable partner.", "Error");
+                MessageBox.Show("Wrong Remote Endpoint or unavailable partner.", "Error");
                 clientSocket = null;
                 return;
             }

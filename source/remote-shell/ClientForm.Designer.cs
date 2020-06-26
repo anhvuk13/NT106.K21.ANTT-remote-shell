@@ -172,8 +172,8 @@
             this.tutorialText.Size = new System.Drawing.Size(684, 78);
             this.tutorialText.TabIndex = 11;
             this.tutorialText.TabStop = false;
-            this.tutorialText.Text = "Ask your partner the Room ID.\nFill the below box and press \"Connect to your partn" +
-    "er\".";
+            this.tutorialText.Text = "Ask your partner the Remote Endpoint.\nFill the below boxes and press \"Connect to " +
+    "your partner\".";
             // 
             // tableLayoutPanel2
             // 
