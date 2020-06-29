@@ -37,6 +37,7 @@
             this.btnClient = new System.Windows.Forms.Button();
             this.btnServer = new System.Windows.Forms.Button();
             this.header = new System.Windows.Forms.Panel();
+            this.btnLogs = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.filter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -65,8 +66,8 @@
             this.tutorialText.TabIndex = 2;
             this.tutorialText.TabStop = false;
             this.tutorialText.Text = "Pick a port and click \"Host a connection\".\nAfterward, look for the above line in " +
-    "your Command Prompt and you will find the Forwarding Remote Endpoint there, forw" +
-    "ard it to your partner.";
+    "your Command Prompt and you will find the Room ID there, forward it to your part" +
+    "ner.";
             // 
             // btnInbox
             // 
@@ -156,6 +157,7 @@
             // header
             // 
             this.header.BackColor = System.Drawing.SystemColors.Highlight;
+            this.header.Controls.Add(this.btnLogs);
             this.header.Controls.Add(this.btnClient);
             this.header.Controls.Add(this.btnServer);
             this.header.Dock = System.Windows.Forms.DockStyle.Top;
@@ -164,6 +166,19 @@
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(684, 70);
             this.header.TabIndex = 8;
+            // 
+            // btnLogs
+            // 
+            this.btnLogs.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogs.Location = new System.Drawing.Point(151, 41);
+            this.btnLogs.Margin = new System.Windows.Forms.Padding(0);
+            this.btnLogs.Name = "btnLogs";
+            this.btnLogs.Size = new System.Drawing.Size(59, 28);
+            this.btnLogs.TabIndex = 1;
+            this.btnLogs.Text = "Logs";
+            this.btnLogs.UseVisualStyleBackColor = false;
+            this.btnLogs.Click += new System.EventHandler(this.btnLogs_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -347,5 +362,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnLogs;
     }
 }

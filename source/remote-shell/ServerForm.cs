@@ -27,6 +27,7 @@ namespace remote_shell
         public string serverInbox = "";
         private string path;
         private List<IPAddress> ips;
+        Log log;
 
         public ServerForm(Dashboard parent)
         {
@@ -324,6 +325,9 @@ namespace remote_shell
             listenThread.Start();
 
             ConnectionChanged(true);
+
+            // Bắt đầu viết log vì client đã được server cho phép truy cập
+            log = new Log(parent.pathLogFolder, ip);
         }
 
         private void ListenThread(ServerForm main)
@@ -372,6 +376,12 @@ namespace remote_shell
                 main.serverShellWindow.ClearShell();
                 return;
             }
+
+            // ghi vao log lenh duoc thuc thi
+            log.updateLog("Input: " + data + '\n');
+            log.updateLog("=> Output:\n");
+
+
             main.terminal.executeCommand(data);
         }
 
@@ -388,6 +398,10 @@ namespace remote_shell
             NetworkStream stream = new NetworkStream(clientSocket.Client, false);
             byte[] buffer = Encoding.UTF8.GetBytes($"s/_{data}");
             stream.Write(buffer, 0, buffer.Length);
+
+            // lưu kết quả trả về từ server
+            log.updateLog("\t" + data);
+
             stream.Close();
         }
 
@@ -438,6 +452,10 @@ namespace remote_shell
             {
                 label1.Enabled = filter.Enabled = true;
                 FilterChanged();
+
+                // close log
+                if(log != null)
+                    log._destructor();
             }
         }
 
@@ -461,6 +479,13 @@ namespace remote_shell
         private void hostPort_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) btnHost.PerformClick();
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            LogForm logForm = new LogForm(parent);
+            logForm.Show();
+            this.Hide();
         }
     }
 }

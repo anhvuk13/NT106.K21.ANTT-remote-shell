@@ -41,7 +41,7 @@
             this.localShell.BackColor = System.Drawing.Color.Black;
             this.localShell.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.localShell.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.localShell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.localShell.Font = new System.Drawing.Font("Cascadia Mono", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.localShell.ForeColor = System.Drawing.Color.White;
             this.localShell.Location = new System.Drawing.Point(5, 5);
             this.localShell.Margin = new System.Windows.Forms.Padding(0);
@@ -111,7 +111,7 @@
             this.Controls.Add(this.localShell);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerShellWindow";
-            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Text = "ServerShellWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerShellWindow_FormClosing);
             this.Shown += new System.EventHandler(this.ServerShellWindow_Shown);

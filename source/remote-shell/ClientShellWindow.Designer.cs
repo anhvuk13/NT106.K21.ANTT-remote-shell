@@ -41,7 +41,7 @@
             this.remoteShell.BackColor = System.Drawing.Color.Black;
             this.remoteShell.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.remoteShell.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.remoteShell.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remoteShell.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remoteShell.ForeColor = System.Drawing.Color.White;
             this.remoteShell.Location = new System.Drawing.Point(5, 5);
             this.remoteShell.Margin = new System.Windows.Forms.Padding(0);
@@ -59,7 +59,7 @@
             this.remoteInput.BackColor = System.Drawing.Color.Black;
             this.remoteInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.remoteInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.remoteInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remoteInput.Font = new System.Drawing.Font("Cascadia Mono", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remoteInput.ForeColor = System.Drawing.Color.White;
             this.remoteInput.Location = new System.Drawing.Point(0, 0);
             this.remoteInput.Margin = new System.Windows.Forms.Padding(0);
