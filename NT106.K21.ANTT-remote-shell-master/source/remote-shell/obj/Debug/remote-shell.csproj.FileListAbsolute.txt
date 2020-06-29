@@ -1,0 +1,34 @@
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.exe.config
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.exe
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.pdb
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csprojAssemblyReference.cache
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientForm.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientInboxWindow.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientShellWindow.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.Dashboard.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.Properties.Resources.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerForm.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerInboxWindow.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerShellWindow.resources
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csproj.GenerateResource.cache
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csproj.CoreCompileInputs.cache
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.exe
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.pdb
+C:\Users\DinhNhi\Documents\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.LogForm.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.exe.config
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.exe
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\bin\Debug\remote-shell.pdb
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csprojAssemblyReference.cache
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientForm.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientInboxWindow.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ClientShellWindow.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.Dashboard.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.LogForm.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.Properties.Resources.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerForm.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerInboxWindow.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote_shell.ServerShellWindow.resources
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csproj.GenerateResource.cache
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.exe
+C:\Users\PC\Documents\UIT\Lap trinh mang can ban\NT106.K21.ANTT-remote-shell-master\source\remote-shell\obj\Debug\remote-shell.pdb
