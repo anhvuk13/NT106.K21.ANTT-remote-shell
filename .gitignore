@@ -1,4 +1,6 @@
 source/.vs/
-source/remote-shell/bin/
+source/remote-shell/bin/*
+!source/remote-shell/bin/Debug/
+source/remote-shell/bin/Debug/*
 !source/remote-shell/bin/Debug/ngrok.exe
 source/remote-shell/obj/
