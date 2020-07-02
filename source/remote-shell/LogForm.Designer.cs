@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogForm));
             this.header = new System.Windows.Forms.Panel();
             this.btnServer = new System.Windows.Forms.Button();
             this.btnLog = new System.Windows.Forms.Button();
@@ -138,6 +139,7 @@
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.lstvLog);
             this.Controls.Add(this.header);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogForm";

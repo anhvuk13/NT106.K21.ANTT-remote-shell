@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>appicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,6 +158,7 @@
     <None Include="Img\tutorial.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="appicon.ico" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
